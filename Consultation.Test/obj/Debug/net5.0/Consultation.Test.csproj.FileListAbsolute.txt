@@ -1,6 +1,0 @@
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\bin\Debug\net5.0\CoverletSourceRootsMapping
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\obj\Debug\net5.0\Consultation.Test.csprojAssemblyReference.cache
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\obj\Debug\net5.0\Consultation.Test.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\obj\Debug\net5.0\Consultation.Test.AssemblyInfoInputs.cache
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\obj\Debug\net5.0\Consultation.Test.AssemblyInfo.cs
-C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-03\Consultation.Test\obj\Debug\net5.0\Consultation.Test.csproj.CoreCompileInputs.cache

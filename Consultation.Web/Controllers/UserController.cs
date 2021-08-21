@@ -53,7 +53,7 @@ namespace Template.Web.Controllers
 
             Alert("Successfully Logged in", AlertType.info);
 
-            return Redirect("/");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Register()
@@ -172,7 +172,7 @@ namespace Template.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("HomeIndex", "Home");
         }
 
         // Return not authorised and not authenticated views

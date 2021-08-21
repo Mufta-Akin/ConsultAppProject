@@ -285,10 +285,6 @@ namespace Consultation.Data.Services
             return patient;
         }
 
-        public void AddDiagnosis(int patientId)
-        {
-            throw new NotImplementedException();
-        }
 
         // delete the specified patient and related user
         public bool PatientDelete(int id)
@@ -464,7 +460,7 @@ namespace Consultation.Data.Services
         }
 
         //----------Condition ------------------------------------------------
-
+      
         public Condition AddConditionSymptoms(int conditionId, IList<ConditionSymptom> symptoms)
         {
             var condition = ctx.Conditions.FirstOrDefault(c => c.Id == conditionId);
@@ -516,7 +512,7 @@ namespace Consultation.Data.Services
         }
 
         // -----------Diagnosis Related----------------------------
-        public IList<Diagnosis> GetDiagnoses()
+        public IList<Diagnosis> GetDiagnoses(IList<ConditionSymptom> conditionSymptoms)
         {
             return ctx.Diagnoses.Include(patient => patient.Id).ToList();
         }

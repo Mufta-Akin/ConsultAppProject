@@ -130,6 +130,7 @@ namespace Consultation.Web.Controllers
         }
 
         // GET: Staffs/Delete/5
+        [Authorize(Roles = "Practice")]
         public IActionResult PracticeDelete(int id)
         {
             // load the staff using the service
@@ -145,6 +146,7 @@ namespace Consultation.Web.Controllers
             return View(pr);
         }
 
+        [Authorize(Roles = "Practice")]
         // POST: Staffs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

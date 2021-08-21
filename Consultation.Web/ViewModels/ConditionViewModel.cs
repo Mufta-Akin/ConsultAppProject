@@ -13,6 +13,10 @@ namespace Consultation.Web.ViewModels
         [Required]
         public string Name { get; set; }
 
+        public Condition Condition { get; set; }
+        [Required]
+        public DateTime DiagnosedDate { get; set; }
+
         public IList<ConditionSymptom> ConditionSymptoms { get; set; }
     }
 }

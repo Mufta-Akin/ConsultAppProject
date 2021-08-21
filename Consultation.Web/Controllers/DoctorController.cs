@@ -202,11 +202,11 @@ namespace Consultation.Web.Controllers
         //-----------Diagnosis Actions in Doctor Controller------------
       
         //// GET: Diagnoses
-        public IActionResult DiagnosisIndex()
-        {
-            var diagnoses = _svc.GetDiagnoses();
-            return View(diagnoses);
-        }
+        //public IActionResult DiagnosisIndex()
+        //{
+        //    var diagnoses = _svc.GetDiagnoses();
+        //    return View(diagnoses);
+        //}
 
         // GET: Diagnoses/Details/5
         public IActionResult DiagnosisDetails(int DiagnosisId)
@@ -220,25 +220,25 @@ namespace Consultation.Web.Controllers
             return View(diagnosis);
         }
 
-       
-        //// GET: Diagnoses/Create
-        //public IActionResult Create(int id)
-        //{
-        //    var pat = _svc.GetPatientById(id);
-        //    // check the returned patient is not null and if so alert
-        //    if (pat == null)
-        //    {
-        //        Alert($"No such patient {id}", AlertType.warning);
-        //        return RedirectToAction(nameof(PatientIndex));
-        //    }
-        //    // create the AilmentViewModel and populate the PatientId property
-        //    var diagnosis = new DiagnosisViewModel
-        //    {
-        //        PatientId = id
-        //    };
 
-        //    return View("CreateDiagnosis", diagnosis);
-        //}
+        // GET: Diagnoses/Create
+        public IActionResult Create(int id)
+        {
+            var pat = _svc.GetPatientById(id);
+            // check the returned patient is not null and if so alert
+            if (pat == null)
+            {
+                Alert($"No such patient {id}", AlertType.warning);
+                return RedirectToAction(nameof(PatientIndex));
+            }
+            // create the AilmentViewModel and populate the PatientId property
+            var diagnosis = new DiagnosisViewModel
+            {
+                PatientId = id
+            };
+
+            return View("CreateDiagnosis", diagnosis);
+        }
 
         //// POST: Diagnoses/Create
         //// To protect from overposting attacks, enable the specific properties you want to bind to.

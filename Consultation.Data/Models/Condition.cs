@@ -13,6 +13,8 @@ namespace Consultation.Data.Models
         [Required]
         public string Name { get; set; }
 
+        public DateTime DiagnosedDate { get; set; } = DateTime.Now;
+
         public string Description { get; set; }
 
         public IList<ConditionSymptom> ConditionSymptoms { get; set; }

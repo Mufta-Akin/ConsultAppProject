@@ -2,7 +2,7 @@
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/patient", "Patients"), ("","Details") })>
 
-    DeletePatientConfirmed
+    Patient Details
 
     <!-- Description list of patient details -->
     <dl class="row">
@@ -32,11 +32,11 @@
         </a>
 
         <!-- add link to redirect to condition action -->
-        <a asp-action="ConditionIndex" class="btn btn-default"></a>
-        <a class="btn btn-info" asp-action="ConditionIndex">View Condition</a>
+        <a asp-action="PatientConditionDetails" class="btn btn-default"></a>
+        <a class="btn btn-info" asp-action="PatientConditionDetails">View Condition</a>
 
         <!-- add link to redirect to Index action -->
-        <a asp-action="PatientIndex" class="btn btn-sm btn-default"></a>
+        <a asp-action="PatientIndex" class="btn btn-default"></a>
         <a class="btn btn-primary" asp-action="PatientIndex">Close</a>
 
 

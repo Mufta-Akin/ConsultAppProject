@@ -58,6 +58,11 @@ html {
   min-height: 100%;
 }
 
+.bg-image {
+    padding: 20em;
+    background-image: url('file:///C:\Users\mufta\OneDrive\AA Consultation base\Consultation-baseE-09-Copy\Consultation.Web\wwwroot\images\stretho.jpg');
+}
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;

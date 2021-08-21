@@ -25,6 +25,15 @@ namespace Consultation.Web.Controllers
             return View();
         }
 
+        public IActionResult HomeIndex()
+        {
+            var about = new HomeIndexViewModel
+            {
+                
+            };
+            return View();
+        }
+
         [Authorize]
         public IActionResult Secure()
         {

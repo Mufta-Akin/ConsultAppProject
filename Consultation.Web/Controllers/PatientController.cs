@@ -134,5 +134,24 @@ namespace Consultation.Web.Controllers
             return RedirectToAction("PatientDetails", new { Id = m.PatientId });
         }
 
+        // GET: Patients/condition details
+        [Authorize]
+        public IActionResult PatientConditionDetails(ConditionViewModel condition)
+        {
+            // obtain id from currently logged in user (patient)
+            var id = GetSignedInUserId(); // method in base controller
+
+            // retrieve the patient with specified id from the service
+            var pat = _svc.GetPatientByUserId(id);
+            if (pat == null)
+            {
+                Alert("Patient Not Found", AlertType.warning);
+                return RedirectToAction(nameof(PatientIndex));
+            }
+            var conditionDetails = _svc.GetDiagnoses(condition.ConditionSymptoms);
+
+            return View(conditionDetails);
+        }
+
     }
 }
