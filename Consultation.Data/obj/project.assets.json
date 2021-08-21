@@ -1003,11 +1003,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mufta\\Desktop\\Consultation-base 00\\Consultation.Data\\Consultation.Data.csproj",
+      "projectUniqueName": "C:\\Users\\mufta\\Desktop\\ConsultAppProject\\Consultation.Data\\Consultation.Data.csproj",
       "projectName": "Consultation.Data",
-      "projectPath": "C:\\Users\\mufta\\Desktop\\Consultation-base 00\\Consultation.Data\\Consultation.Data.csproj",
+      "projectPath": "C:\\Users\\mufta\\Desktop\\ConsultAppProject\\Consultation.Data\\Consultation.Data.csproj",
       "packagesPath": "C:\\Users\\mufta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mufta\\Desktop\\Consultation-base 00\\Consultation.Data\\obj\\",
+      "outputPath": "C:\\Users\\mufta\\Desktop\\ConsultAppProject\\Consultation.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mufta\\AppData\\Roaming\\NuGet\\NuGet.Config",

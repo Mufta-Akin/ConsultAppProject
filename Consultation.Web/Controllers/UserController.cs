@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-
 using Consultation.Data.Services;
 using Consultation.Data.Models;
 using Consultation.Web.ViewModels;
