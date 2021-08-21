@@ -13,7 +13,7 @@ namespace Consultation.Data.Repositories
     {
          // authentication store
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Practice> Practice { get; set; }
         public DbSet<Ailment> Ailments { get; set; }
         public DbSet<AilmentSymptom> AilmentSymptom { get; set; }
         public DbSet<Condition> Conditions { get; set; }
@@ -22,6 +22,7 @@ namespace Consultation.Data.Repositories
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Symptom> Symptoms { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
         // Configure the context to use Specified database. We are using 
         // Sqlite database as it does not require any additional installations.

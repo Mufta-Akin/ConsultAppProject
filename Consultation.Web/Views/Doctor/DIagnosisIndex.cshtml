@@ -1,0 +1,39 @@
+﻿@model IList<Diagnosis>
+
+<h3>Patients</h3>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>DiagnosedOn</th>
+                <th>ConfirmedOn</th>
+                <th>Doctor</th>
+                <th>Description</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Patient.Id</td>
+                <td>@item.DiagnosedOn</td>
+                <td>@item.ConfirmedOn</td>
+                <td>@item.Doctor</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-controller="doctor" asp-action="PatientDetails" asp-route-id="@item.Id"> Details</a> |
+                    <a asp-controller="doctor" asp-action="PatientEdit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="form-group" mt-2>
+    <a class="btn btn-secondary" asp-action="DoctorIndex">Back to Index</a>
+</div>
+

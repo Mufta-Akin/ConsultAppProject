@@ -29,6 +29,5 @@ namespace Consultation.Data.Models
 
         // Related User Account
         public User User { get; set; }
-
     }
 }

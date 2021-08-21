@@ -13,25 +13,26 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Consultation.Web.Controllers
 {
-    [Authorize(Roles = "Patient")]
+    //[Authorize(Roles = "Patient")]
     public class PatientController : BaseController
     {
-        private PatientService _svc;
+        private PracticeService _svc;
 
-        public PatientController(PatientService svc)
+        public PatientController(PracticeService svc)
         {
             _svc = svc;
         }
 
         // GET: Current patient Dashboard
-        public IActionResult Index()
+        public IActionResult PatientIndex()
         {
             // dashboard for patient   
             return View();
         }
 
         // GET: Patients/Details
-        public IActionResult Details()
+        [Authorize]
+        public IActionResult PatientDetails()
         {           
             // obtain id from currently logged in user (patient)
             var id = GetSignedInUserId(); // method in base controller
@@ -41,14 +42,14 @@ namespace Consultation.Web.Controllers
             if (pat == null)
             {
                 Alert("Patient Not Found", AlertType.warning);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(PatientIndex));
             }
             return View(pat);
         }
 
-        
         // GET /patient/edit
-        public IActionResult Edit()
+        [Authorize]
+        public IActionResult PatientEdit()
         {
             // obtain id from currently logged in user (patient)
             var id = GetSignedInUserId(); // method in base controller
@@ -58,7 +59,7 @@ namespace Consultation.Web.Controllers
             if (pat == null)
             {
                 Alert($"No such patient {id}", AlertType.warning);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(PatientIndex));
             }
 
             // pass patient to view for editing
@@ -69,9 +70,10 @@ namespace Consultation.Web.Controllers
         // POST: Patients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Practice, Doctor, Patient")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Address,Email,Mobile,Age,Password")] Patient pat)
+        public IActionResult PatientEdit(int id, [Bind("Id,Name,Address,Email,Mobile,Age,Password")] Patient pat)
         {
             
             // validate patient
@@ -82,11 +84,51 @@ namespace Consultation.Web.Controllers
                 _svc.UpdatePatient(pat);
                 Alert("Patient details saved", AlertType.info);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(PatientIndex));
             }
 
             // redisplay the form for editing as validation errors
             return View(pat);
+        }
+
+
+        // GET /patient/createailment
+        public IActionResult CreateAilment(int id)
+        {
+            var pat = _svc.GetPatientById(id);
+            // check the returned patient is not null and if so alert
+            if (pat == null)
+            {
+                Alert($"No such patient {id}", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+            // create the AilmentViewModel and populate the PatientId property
+            var ailment = new AilmentViewModel
+            {
+                PatientId = id
+            };
+
+            return View("CreateAilment", ailment);
+        }
+
+        // POST /patient/createailment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateAilment([Bind("PatientId, Issue")] AilmentViewModel m)
+        {
+            var pat = _svc.GetPatientById(m.PatientId);
+            // check the returned patient is not null and if so return NotFound()
+            if (pat == null)
+            {
+                Alert($"No such patient {m.PatientId}", AlertType.warning);
+                return RedirectToAction(nameof(PatientIndex));
+            }
+
+            // create the ailment view model and populate the PatientId property
+            _svc.AddAilment(m.PatientId, m.Issue);
+            Alert($"Ailment created successfully", AlertType.success);
+
+            return RedirectToAction("PatientDetails", new { Id = m.PatientId });
         }
 
     }

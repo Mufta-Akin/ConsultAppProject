@@ -11,7 +11,7 @@ namespace Consultation.Data.Services
         // Initialise the repository - only to be used during development 
         void Initialise();
 
-        // ---------------- User Management --------------
+        // ---------------- User Management -------------
         IList<User> GetUsers();
         User GetUser(int id);
         User GetUserByEmail(string email, int? id);
@@ -19,7 +19,7 @@ namespace Consultation.Data.Services
         User UpdateUser(User user);
         bool DeleteUser(int id);
         User Authenticate(string email, string password);
-        
+                
     }
-    
+
 }

@@ -2,7 +2,7 @@
 namespace Consultation.Data.Models
 {
     // Add User roles relevant to your application
-    public enum Role { Patient, Doctor, Practice }
+    public enum Role { Patient, Doctor, Staff, Practice }
 
     public class User
     {

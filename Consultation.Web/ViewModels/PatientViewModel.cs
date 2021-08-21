@@ -24,8 +24,8 @@ namespace Consultation.Web.ViewModels
         [Required]
         public string Password { get; set; }
 
-        [Range(0, 130)]
-        public int Age { get; set; }
+        [Required]
+        public DateTime Dob { get; set; }
 
     }
 

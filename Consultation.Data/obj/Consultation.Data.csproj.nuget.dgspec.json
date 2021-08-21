@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation A and B\\Consultation-base 01\\Consultation.Data\\Consultation.Data.csproj": {}
+    "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Data\\Consultation.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation A and B\\Consultation-base 01\\Consultation.Data\\Consultation.Data.csproj": {
+    "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Data\\Consultation.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation A and B\\Consultation-base 01\\Consultation.Data\\Consultation.Data.csproj",
+        "projectUniqueName": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Data\\Consultation.Data.csproj",
         "projectName": "Consultation.Data",
-        "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation A and B\\Consultation-base 01\\Consultation.Data\\Consultation.Data.csproj",
+        "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Data\\Consultation.Data.csproj",
         "packagesPath": "C:\\Users\\mufta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation A and B\\Consultation-base 01\\Consultation.Data\\obj\\",
+        "outputPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mufta\\AppData\\Roaming\\NuGet\\NuGet.Config",

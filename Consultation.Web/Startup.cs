@@ -31,7 +31,6 @@ namespace Consultation.Web
             
             // Add UserService to DI - change to use real UserService           
             services.AddScoped<IUserService,UserService>();
-            services.AddScoped<PatientService>();
             services.AddScoped<PracticeService>();
 
             // ** Required to enable asp-authorize Taghelper **            
@@ -48,8 +47,8 @@ namespace Consultation.Web
                 // seed users - using service provider to get PatientService from DI
                 Seeder.Seed(
                     provider.GetService<IUserService>(), 
-                    provider.GetService<PracticeService>(),
-                    provider.GetService<PatientService>()
+                    provider.GetService<PracticeService>()
+
                 );
             }
             else

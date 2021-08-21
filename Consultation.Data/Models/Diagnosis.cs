@@ -20,8 +20,12 @@ namespace Consultation.Data.Models
         public int DoctorId { get; set; }//may have to convert to nullable int?
         public Doctor Doctor { get; set; }
 
+        public int PatientId { get; set; }//may have to convert to nullable int?
+        public Doctor Patient { get; set; }
+
         [Required]
         [StringLength(500, MinimumLength = 5)]
         public string Description { get; set; }
+        public IList<Symptom> Symptoms { get; internal set; }
     }
 }

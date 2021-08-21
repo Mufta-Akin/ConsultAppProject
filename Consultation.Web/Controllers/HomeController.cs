@@ -41,10 +41,21 @@ namespace Consultation.Web.Controllers
             var about = new AboutViewModel
             {
                 Title = "About",
-                Message = "Partially Automated Smart Health Online Consultation App Using Data Mining Algorithm.",
+                Message = "Partially Automated Online Consultation Using Data Matching Algorithm.",
                 Formed = DateTime.Now
             };
             return View(about);
+        }
+
+        public IActionResult Welcome()
+        {
+            var welcome = new AboutViewModel
+            {
+                Title = "Welcome",
+                Message = "Partially Automated Online Consultation Using Data Matching Algorithm.",
+                Formed = DateTime.Now
+            };
+            return View(welcome);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

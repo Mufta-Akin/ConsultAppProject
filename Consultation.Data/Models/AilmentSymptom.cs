@@ -14,6 +14,6 @@ namespace Consultation.Data.Models
         public Ailment Ailment { get; set; }
         public int SymptomId { get; set; }
         public Symptom Symptom { get; set; }
-        public SymptomSignificance Significance { get; set; } //enum
+        public SymptomSignificance Significance { get; set; } = SymptomSignificance.Primary; //enum
     }
 }

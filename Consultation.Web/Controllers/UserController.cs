@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Consultation.Data.Security;
 using Consultation.Web;
+using Consultation.Web.Controllers;
 
 /**
  *  User Management Controller providing registration and login functionality
@@ -28,7 +29,6 @@ namespace Template.Web.Controllers
             _config = config;    
             _svc = svc;
         }
-
 
         public IActionResult Login()
         {
