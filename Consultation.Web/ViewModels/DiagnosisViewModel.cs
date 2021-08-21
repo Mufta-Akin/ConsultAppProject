@@ -21,8 +21,6 @@ namespace Consultation.Web.ViewModels
         [Required]
         public DateTime ConfirmedOn { get; set; }
 
-        public SelectList Doctors { set; get; }
-
         public int PatientId { get; set; }
 
         [Required]

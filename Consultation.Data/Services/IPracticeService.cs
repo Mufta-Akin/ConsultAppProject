@@ -83,5 +83,9 @@ namespace Consultation.Data.Services
         bool StaffDelete(int id);
         Staff GetStaffByUserId(int userId);
         Staff AddStaff(string name, string position, string email, string password, string mobile);
+
+        //----------Diagnosis Management-----------------------
+        IList<Diagnosis> GetDiagnoses();
+        Diagnosis GetDiagnosisById(int DiagnosisId);
     }
 }

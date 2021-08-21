@@ -515,6 +515,20 @@ namespace Consultation.Data.Services
             return results;
         }
 
+        // -----------Diagnosis Related----------------------------
+        public IList<Diagnosis> GetDiagnoses()
+        {
+            return ctx.Diagnoses.Include(patient => patient.Id).ToList();
+        }
+
+        public Diagnosis GetDiagnosisById(int DiagnosisId)
+        {
+            return ctx.Diagnoses
+                     .Include(patient => patient.Id)
+                     .FirstOrDefault(diagnosis => diagnosis.Id == DiagnosisId);
+        }
+
+
         //-------------------------Doctors-----------------------------
 
         // get all doctors
@@ -749,15 +763,7 @@ namespace Consultation.Data.Services
             return staff; // return newly added staff
         }
 
-
-        // -----------Diagnosis Related----------------------------
-        public Diagnosis GetDiagnoses()
-        {
-
-            return null;
-        }
-
-
+                
     }
 
 

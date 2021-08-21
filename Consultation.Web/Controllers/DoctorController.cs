@@ -200,39 +200,27 @@ namespace Consultation.Web.Controllers
         }
 
         //-----------Diagnosis Actions in Doctor Controller------------
-
-        //public IActionResult DiagnosisIndex()
-        //{
-        //    // dashboard for diagnosis   
-        //    return View();
-        //}
-
+      
         //// GET: Diagnoses
+        public IActionResult DiagnosisIndex()
+        {
+            var diagnoses = _svc.GetDiagnoses();
+            return View(diagnoses);
+        }
 
-        //public IActionResult DiagnosesIndex()
-        //{
-        //    var diagnoses = _svc.GetDiagnoses();
-        //    return View(diagnoses);
-        //}
+        // GET: Diagnoses/Details/5
+        public IActionResult DiagnosisDetails(int DiagnosisId)
+        {
+            var diagnosis = _svc.GetDiagnosisById(DiagnosisId); ;
+            if (diagnosis == null)
+            {
+                return NotFound();
+            }
+                        
+            return View(diagnosis);
+        }
 
-        //// GET: Diagnoses/Details/5
-        //public IActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var diagnosis = _svc.GetDiagnoses();
-
-        //    if (diagnosis == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(diagnosis);
-        //}
-
+       
         //// GET: Diagnoses/Create
         //public IActionResult Create(int id)
         //{

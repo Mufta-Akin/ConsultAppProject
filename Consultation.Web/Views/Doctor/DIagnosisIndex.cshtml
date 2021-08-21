@@ -6,9 +6,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>DiagnosedOn</th>
+                <th>Condition</th>
+                <th>DiagnoseOn</th>
                 <th>ConfirmedOn</th>
-                <th>Doctor</th>
                 <th>Description</th>
                 <th>Actions</th>
                 <th></th>
@@ -18,14 +18,12 @@
             @foreach (var item in Model)
             {
             <tr>
-                <td>@item.Patient.Id</td>
+                <td>@item.Condition</td>
                 <td>@item.DiagnosedOn</td>
                 <td>@item.ConfirmedOn</td>
-                <td>@item.Doctor</td>
                 <td>@item.Description</td>
                 <td>
-                    <a asp-controller="doctor" asp-action="PatientDetails" asp-route-id="@item.Id"> Details</a> |
-                    <a asp-controller="doctor" asp-action="PatientEdit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-controller="doctor" asp-action="PatientDetails" asp-route-id="@item.Id"> Details</a>
                 </td>
             </tr>
             }
