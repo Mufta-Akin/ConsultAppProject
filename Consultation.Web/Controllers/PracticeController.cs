@@ -504,27 +504,28 @@ namespace Consultation.Web.Controllers
                 Alert($"No such staff {id}", AlertType.warning);
                 return RedirectToAction(nameof(StaffIndex));
             }
-            return View(StaffViewModel.FromStaff(staff));
+
+            return View(staff);
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StaffEdit(int id, [Bind("Id,Name, Position, Email, Password, Mobile")] StaffViewModel staff)
+        public IActionResult StaffEdit(int id, [Bind("Id,name, position, email, password, mobile")] Staff staff)
         {
             // check email is unique for this staff
-            if (_svc.IsDuplicateDrEmail(staff.Email, staff.Id))
+            if (_svc.IsDuplicateDrEmail(staff.User.Email, staff.User.Id))
             {
                 // add manual validation error
-                ModelState.AddModelError(nameof(staff.Email), "The email address is already in use");
+                ModelState.AddModelError(nameof(staff.User.Email), "The email address is already in use");
             }
 
             // validate staff
             if (ModelState.IsValid)
             {
                 // pass data to service to update
-                _svc.UpdateStaff(staff.ToStaff());
+                _svc.UpdateStaff(staff);
                 Alert("Staff details saved", AlertType.info);
 
                 return RedirectToAction(nameof(StaffIndex));

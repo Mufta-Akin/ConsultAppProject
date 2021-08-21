@@ -24,36 +24,6 @@ namespace Consultation.Web.ViewModels
         [Required]
         [StringLength(15)]
         public string Mobile { get; set; }
-
-
-        public Staff ToStaff()
-        {
-            return new Staff
-            {
-                Id = Id,
-                Position = Position,
-                Mobile = Mobile,
-                User = new User
-                {
-                    Name = Name,
-                    Password = Password,
-                    Email = Email
-                }
-            };
-        }
-
-        public static StaffViewModel FromStaff(Staff s)
-        {
-            return new StaffViewModel
-            {
-                Id = s.Id,
-                Position = s.Position,
-                Mobile = s.Mobile,
-                Name = s.User.Name,
-                Password = s.User.Password,
-                Email = s.User.Email
-            };
-        }
     }
 
 }
