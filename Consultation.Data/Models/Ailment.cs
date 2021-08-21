@@ -12,7 +12,7 @@ namespace Consultation.Data.Models
 
         [Required]
         [StringLength(500, MinimumLength = 5)]
-        public string Complaint { get; set; }
+        public string Issue { get; set; }
 
         [StringLength(500)]
         public string Resolution { get; set; }

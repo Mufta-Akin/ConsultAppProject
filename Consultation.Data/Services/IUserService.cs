@@ -19,7 +19,7 @@ namespace Consultation.Data.Services
         User UpdateUser(User user);
         bool DeleteUser(int id);
         User Authenticate(string email, string password);
-       
+        
     }
     
 }

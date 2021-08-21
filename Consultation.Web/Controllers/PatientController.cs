@@ -89,6 +89,5 @@ namespace Consultation.Web.Controllers
             return View(pat);
         }
 
-
     }
 }

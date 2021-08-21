@@ -27,7 +27,7 @@ namespace Consultation.Data.Services
                      .FirstOrDefault(pat => pat.User.Id == userId);
         }
 
-        // get the patient with the specified patient 
+        // get the patient with the specified patient id 
         public Patient GetPatientById(int patientId)
         {
             return ctx.Patients
@@ -36,6 +36,7 @@ namespace Consultation.Data.Services
                      .FirstOrDefault(pat => pat.Id == patientId);
         }
 
+        //update patient
         public Patient UpdatePatient(Patient updated)
         {
             // verify that the patient exists
@@ -57,19 +58,18 @@ namespace Consultation.Data.Services
             return patient;
         }
 
-        public Ailment AddAilment(int patientId, string complaint)
+        public Ailment AddAilment(int patientId, string issue)
         {
             var patient = GetPatientById(patientId);
             if (patient == null)
             {
                 return null;
             }
-            var ailment = new Ailment { PatientId = patientId, Complaint = complaint };
+            var ailment = new Ailment { PatientId = patientId, Issue = issue };
             patient.Ailments.Add(ailment);
             ctx.SaveChanges();
             return ailment;
         }
-
 
     }
 

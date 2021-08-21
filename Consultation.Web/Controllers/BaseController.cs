@@ -38,6 +38,7 @@ namespace Consultation.Web.Controllers
         {
             return User.Identity.IsAuthenticated;
         }
+
     }
 
  
