@@ -1,8 +1,6 @@
 using System;
 using Xunit;
 using Consultation.Data.Models;
-using Consultation.Data.Security;
-
 using Consultation.Data.Services;
 using System.Collections.Generic;
 

@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-
 using Consultation.Data.Models;
 using Consultation.Data.Security;
 using Consultation.Data.Repositories;
@@ -21,8 +20,6 @@ namespace Consultation.Data.Services
         {
            ctx.Initialise(); 
         }
-
-        // ------------------ User Related Operations ------------------------
 
         // retrieve list of Users
         public IList<User> GetUsers()

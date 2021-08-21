@@ -9,8 +9,8 @@ namespace Consultation.Data.Services
     public static class Seeder
     {
         // use this class to seed the database with dummy 
-        // test data using an IUserService 
-         public static void Seed(IUserService _user, PracticeService _svc)
+        // test data using an IUserService and IPracticeService
+         public static void Seed(IUserService _user, IPracticeService _svc)
         {
             _svc.Initialise();
 

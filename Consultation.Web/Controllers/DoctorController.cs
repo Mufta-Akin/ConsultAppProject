@@ -1,21 +1,13 @@
-﻿using Consultation.Data.Models;
-using Consultation.Data.Services;
+﻿using Consultation.Data.Services;
 using Consultation.Web.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Consultation.Web.Controllers
 {
     //[Authorize(Roles = "Doctor, Practice")]
     public class DoctorController : BaseController
     {
-        private PracticeService _svc;
+        private readonly PracticeService _svc;
 
         public DoctorController(PracticeService svc)
         {

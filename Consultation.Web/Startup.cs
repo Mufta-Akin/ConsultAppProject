@@ -44,7 +44,7 @@ namespace Consultation.Web
         {
             if (env.IsDevelopment())
             {
-                // seed users - using service provider to get PatientService from DI
+                // seed users - using service provider to get PatientService from Dependency Injection (DI)
                 Seeder.Seed(
                     provider.GetService<IUserService>(),
                     provider.GetService<PracticeService>()
