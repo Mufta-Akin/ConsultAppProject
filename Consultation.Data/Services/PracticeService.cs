@@ -277,7 +277,10 @@ namespace Consultation.Data.Services
 
             patient.User.Name = updated.User.Name;
             patient.User.Email = updated.User.Email;
-            patient.User.Password = Hasher.CalculateHash(updated.User.Password);
+            if (!Hasher.IsHashed(updated.User.Password))
+            {
+                patient.User.Password = Hasher.CalculateHash(updated.User.Password);
+            }
             ctx.SaveChanges(); // write to database
             return patient;
         }
@@ -577,7 +580,7 @@ namespace Consultation.Data.Services
             doctor.User.Name = updated.User.Name;
             doctor.User.Email = updated.User.Email;
             // password update should only be carried out by the signed in user
-            //doctor.User.Password = Hasher.CalculateHash(updated.User.Password);
+            doctor.User.Password = Hasher.CalculateHash(updated.User.Password);
 
             ctx.SaveChanges(); // write to database
             return doctor;

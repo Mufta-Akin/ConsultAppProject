@@ -1,4 +1,4 @@
-﻿@model Doctor
+﻿@model DoctorViewModel
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/doctor", "Doctors"), ("","Edit") })>
 
@@ -11,11 +11,12 @@
             <form asp-action="DoctorEdit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Password" />
 
                 <div class="form-group">
-                    <label asp-for="User.Name" class="control-label"></label>
-                    <input asp-for="User.Name" class="form-control" />
-                    <span asp-validation-for="User.Name" class="text-danger"></span>
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Speciality" class="control-label"></label>
@@ -25,9 +26,9 @@
                     <span asp-validation-for="Speciality" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="User.Email" class="control-label"></label>
-                    <input asp-for="User.Email" class="form-control" />
-                    <span asp-validation-for="User.Email" class="text-danger"></span>
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">

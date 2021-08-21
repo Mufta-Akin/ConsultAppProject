@@ -52,11 +52,13 @@ namespace Consultation.Web.Controllers
         }
 
         // GET /doctor/edit
-        public IActionResult DoctorEdit(int id)
+        public IActionResult DoctorEdit()
         {
+            //obtain id from current logged in user (doctor)
+            var id = GetSignedInUserId(); //method in base controller
 
             // retrieve the doctor with specified id from the service
-            var doc = _svc.GetDoctorById(id);
+            var doc = _svc.GetDoctorByUserId(id);
             if (doc == null)
             {
                 Alert($"No such doctor {id}", AlertType.warning);
@@ -64,7 +66,7 @@ namespace Consultation.Web.Controllers
             }
 
             // pass doctor to view for editing
-            return View(doc);
+            return View(DoctorViewModel.FromDoctor(doc));
         }
 
         // POST: Doctors/Edit/5
@@ -72,15 +74,14 @@ namespace Consultation.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DoctorEdit(int id, [Bind("Id,Name,Speciality,Email,Mobile,Password,Mobile")] Doctor doc)
-        {
-
+        public IActionResult DoctorEdit(int id, DoctorViewModel doc)
+        {            
             // validate doctor
             if (ModelState.IsValid)
             {
                 // pass data to service to update
 
-                _svc.UpdateDoctor(doc);
+                _svc.UpdateDoctor(doc.ToDoctor());
                 Alert("Doctor details saved", AlertType.info);
 
                 return RedirectToAction(nameof(DoctorIndex));
@@ -89,7 +90,6 @@ namespace Consultation.Web.Controllers
             // redisplay the form for editing as validation errors
             return View(doc);
         }
-
 
         //---------Patient Actions in Doctor Controller--------------------------
 
@@ -130,27 +130,27 @@ namespace Consultation.Web.Controllers
                 return RedirectToAction(nameof(PatientIndex));
             }
 
-            return View(p);
+            return View(PatientViewModel.FromPatient(p));
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PatientEdit(int id, [Bind("Id,name, address, email, password, mobile, dob")] Patient pat)
+        public IActionResult PatientEdit(int id, PatientViewModel pat)
         {
             // check email is unique for this patient
-            if (_svc.IsDuplicatePatientEmail(pat.User.Email, pat.User.Id))
+            if (_svc.IsDuplicatePatientEmail(pat.Email, pat.Id))
             {
                 // add manual validation error
-                ModelState.AddModelError(nameof(pat.User.Email), "The email address is already in use");
+                ModelState.AddModelError(nameof(pat.Email), "The email address is already in use");
             }
 
             // validate patient
             if (ModelState.IsValid)
             {
                 // pass data to service to update
-                _svc.UpdatePatient(pat);
+                _svc.UpdatePatient(pat.ToPatient());
                 Alert("Patient details saved", AlertType.info);
 
                 return RedirectToAction(nameof(PatientIndex));

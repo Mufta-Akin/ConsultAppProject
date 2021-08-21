@@ -67,7 +67,6 @@ namespace Consultation.Web.Controllers
             return View(pat);
         }
 
-
         // POST: Patients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,7 +75,6 @@ namespace Consultation.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PatientEdit(int id, [Bind("Id,Name,Address,Email,Mobile,Age,Password")] Patient pat)
         {
-
             // validate patient
             if (ModelState.IsValid)
             {

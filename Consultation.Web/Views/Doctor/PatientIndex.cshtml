@@ -23,7 +23,9 @@
                     <td>@pat.User.Email</td>
                     <td>
                         <a asp-controller="doctor" asp-action="PatientDetails" asp-route-id="@pat.Id"> Details</a> |
-                        <a asp-controller="doctor" asp-action="PatientEdit" asp-route-id="@pat.Id">Edit</a>
+                        <a asp-controller="doctor" asp-action="PatientEdit" asp-route-id="@pat.Id">Edit</a> |
+                        <a asp-controller="doctor" asp-action="DiagnosisDetails" asp-route-id="@pat.Id">Diagnosis</a>
+
                     </td>
                 </tr>
             }
