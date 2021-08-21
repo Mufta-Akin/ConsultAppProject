@@ -6890,11 +6890,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-05\\Consultation.Test\\Consultation.Test.csproj",
+      "projectUniqueName": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-06\\Consultation.Test\\Consultation.Test.csproj",
       "projectName": "Consultation.Test",
-      "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-05\\Consultation.Test\\Consultation.Test.csproj",
+      "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-06\\Consultation.Test\\Consultation.Test.csproj",
       "packagesPath": "C:\\Users\\mufta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-05\\Consultation.Test\\obj\\",
+      "outputPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-06\\Consultation.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mufta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6911,8 +6911,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-05\\Consultation.Data\\Consultation.Data.csproj": {
-              "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-05\\Consultation.Data\\Consultation.Data.csproj"
+            "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-06\\Consultation.Data\\Consultation.Data.csproj": {
+              "projectPath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseE-06\\Consultation.Data\\Consultation.Data.csproj"
             }
           }
         }
