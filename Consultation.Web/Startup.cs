@@ -21,21 +21,21 @@ namespace Consultation.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {   
-            
+        {
+
             // ** Add Cookie Authentication via extension method **
             services.AddCookieAuthentication();
 
             // ** Enable Cors for and webapi endpoints provided **
             services.AddCors();
-            
+
             // Add UserService to DI - change to use real UserService           
-            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<PracticeService>();
 
             // ** Required to enable asp-authorize Taghelper **            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+
             services.AddControllersWithViews();
         }
 
@@ -46,7 +46,7 @@ namespace Consultation.Web
             {
                 // seed users - using service provider to get PatientService from DI
                 Seeder.Seed(
-                    provider.GetService<IUserService>(), 
+                    provider.GetService<IUserService>(),
                     provider.GetService<PracticeService>()
 
                 );
@@ -69,7 +69,7 @@ namespace Consultation.Web
             // ** turn on authentication/authorisation **
             app.UseAuthentication();
             app.UseAuthorization();
- 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

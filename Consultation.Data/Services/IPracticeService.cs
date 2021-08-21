@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Consultation.Data.Services
 {
-    public interface IPracticeServices
+    public interface IPracticeService
     {
+        void Initialise();
+
         // ---------------- Practice Management --------------
         IList<Practice> GetPractice();
         Practice CreatePractice(string name, string Address, string email, string password, string mobile);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "51YMhG2QdmJdM21OSI2E70NFJPNb1MEU4ozz8Gaki0X5ANXIK9C1emH3oG1kQ1DAYv5oKr5G8B9wIRnq/jBQcQ==",
+  "dgSpecHash": "oigrvVL+qvNcwH8cwqX8TUae+eZ7kO8y7WvaZZFpD7okeYhXF6V9ss7zWoxZKSItLAej7HrDvwMsVsoALgy8FA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-01\\Consultation.Test\\Consultation.Test.csproj",
+  "projectFilePath": "C:\\Users\\mufta\\OneDrive\\AA Consultation base\\Consultation-baseD-06\\Consultation.Test\\Consultation.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mufta\\.nuget\\packages\\coverlet.collector\\3.0.3\\coverlet.collector.3.0.3.nupkg.sha512",
     "C:\\Users\\mufta\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",

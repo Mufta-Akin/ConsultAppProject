@@ -1,4 +1,4 @@
-﻿@model Staff
+﻿@model StaffViewModel
 
     <h3 class="mt-4 mb-4">Edit Staff</h3>
 
@@ -11,11 +11,12 @@
             <!-- we hide the id as its not user editable but needs to be in the -->
             <!-- form to ensure the patient passed to the controller is complete -->
             <input type="hidden" asp-for="Id" class="form-control" />
+            <input type="hidden" asp-for="Password" />
 
             <div class="form-group">
-                <label asp-for="User.Name" class="control-label"></label>
-                <input asp-for="User.Name" class="form-control" />
-                <span asp-validation-for="User.Name" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -25,9 +26,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="User.Email" class="control-label"></label>
-                <input asp-for="User.Email" class="form-control" />
-                <span asp-validation-for="User.Email" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">

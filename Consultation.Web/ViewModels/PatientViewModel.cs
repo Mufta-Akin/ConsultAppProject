@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Consultation.Data.Models;
 
 namespace Consultation.Web.ViewModels
 {
@@ -27,6 +28,35 @@ namespace Consultation.Web.ViewModels
         [Required]
         public DateTime Dob { get; set; }
 
+        public Patient ToPatient()
+        {
+            return new Patient {
+                Id = Id,
+                Address = Address,
+                Mobile = Mobile,
+                Dob = Dob,
+                User = new User 
+                {
+                    Name = Name,
+                    Password = Password,
+                    Email = Email
+                }    
+            };
+        }
+
+        public static PatientViewModel FromPatient(Patient p)
+        {
+            return new PatientViewModel
+            {
+                Id = p.Id,
+                Address = p.Address,
+                Mobile = p.Mobile,
+                Dob = p.Dob,
+                Name = p.User.Name,
+                Password = p.User.Password,
+                Email = p.User.Email
+            };
+        }
     }
 
 }

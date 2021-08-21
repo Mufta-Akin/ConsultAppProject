@@ -233,27 +233,27 @@ namespace Consultation.Web.Controllers
                 return RedirectToAction(nameof(PatientIndex));
             }
 
-            return View(p);
+            return View(PatientViewModel.FromPatient(p));
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PatientEdit(int id, [Bind("Id,name, address, email, password, mobile, dob")] Patient pat)
+        public IActionResult PatientEdit(int id, PatientViewModel pat)
         {
             // check email is unique for this patient
-            if (_svc.IsDuplicatePatientEmail(pat.User.Email, pat.User.Id))
+            if (_svc.IsDuplicatePatientEmail(pat.Email, pat.Id))
             {
                 // add manual validation error
-                ModelState.AddModelError(nameof(pat.User.Email), "The email address is already in use");
+                ModelState.AddModelError(nameof(pat.Email), "The email address is already in use");
             }
 
             // validate patient
             if (ModelState.IsValid)
             {
                 // pass data to service to update
-                _svc.UpdatePatient(pat);
+                _svc.UpdatePatient(pat.ToPatient());
                 Alert("Patient details saved", AlertType.info);
 
                 return RedirectToAction(nameof(PatientIndex));
@@ -285,7 +285,7 @@ namespace Consultation.Web.Controllers
         public IActionResult PatientDeleteConfirmed(int id)
         {
             // delete patient via service
-             if (_svc.PatientDelete(id))
+            if (_svc.PatientDelete(id))
             {
 
                 Alert($"Patient {id} deleted successfully", AlertType.success);
@@ -370,27 +370,27 @@ namespace Consultation.Web.Controllers
                 return RedirectToAction(nameof(DoctorIndex));
             }
 
-            return View(doc);
+            return View(DoctorViewModel.FromDoctor(doc));
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DoctorEdit(int id, [Bind("Id,name, speciality, email, password, mobile")] Doctor doc)
+        public IActionResult DoctorEdit(int id, DoctorViewModel doc)
         {
             // check email is unique for this doctor
-            if (_svc.IsDuplicateDrEmail(doc.User.Email, doc.User.Id))
+            if (_svc.IsDuplicateDrEmail(doc.Email, doc.Id))
             {
                 // add manual validation error
-                ModelState.AddModelError(nameof(doc.User.Email), "The email address is already in use");
+                ModelState.AddModelError(nameof(doc.Email), "The email address is already in use");
             }
 
             // validate doctor
             if (ModelState.IsValid)
             {
                 // pass data to service to update
-                _svc.UpdateDoctor(doc);
+                _svc.UpdateDoctor(doc.ToDoctor());
                 Alert("Doctor details saved", AlertType.info);
 
                 return RedirectToAction(nameof(DoctorIndex));
@@ -422,7 +422,7 @@ namespace Consultation.Web.Controllers
         public IActionResult DoctorDeleteConfirmed(int id)
         {
             // delete doctor via service
-            if ( _svc.DoctorDelete(id))
+            if (_svc.DoctorDelete(id))
             {
                 Alert($"Doctor {id} deleted successfully", AlertType.success);
             }
@@ -504,28 +504,27 @@ namespace Consultation.Web.Controllers
                 Alert($"No such staff {id}", AlertType.warning);
                 return RedirectToAction(nameof(StaffIndex));
             }
-
-            return View(staff);
+            return View(StaffViewModel.FromStaff(staff));
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StaffEdit(int id, [Bind("Id,name, position, email, password, mobile")] Staff staff)
+        public IActionResult StaffEdit(int id, [Bind("Id,Name, Position, Email, Password, Mobile")] StaffViewModel staff)
         {
             // check email is unique for this staff
-            if (_svc.IsDuplicateDrEmail(staff.User.Email, staff.User.Id))
+            if (_svc.IsDuplicateDrEmail(staff.Email, staff.Id))
             {
                 // add manual validation error
-                ModelState.AddModelError(nameof(staff.User.Email), "The email address is already in use");
+                ModelState.AddModelError(nameof(staff.Email), "The email address is already in use");
             }
 
             // validate staff
             if (ModelState.IsValid)
             {
                 // pass data to service to update
-                _svc.UpdateStaff(staff);
+                _svc.UpdateStaff(staff.ToStaff());
                 Alert("Staff details saved", AlertType.info);
 
                 return RedirectToAction(nameof(StaffIndex));
@@ -561,7 +560,7 @@ namespace Consultation.Web.Controllers
             {
                 Alert($"Staff {id} deleted successfully", AlertType.success);
             }
-            else 
+            else
             {
                 Alert($"Staff {id} could not be deleted", AlertType.warning);
             }

@@ -52,13 +52,11 @@ namespace Consultation.Web.Controllers
         }
 
         // GET /doctor/edit
-        public IActionResult DoctorEdit()
+        public IActionResult DoctorEdit(int id)
         {
-            // obtain id from currently logged in user (doctor)
-            var id = GetSignedInUserId(); // method in base controller
 
             // retrieve the doctor with specified id from the service
-            var doc = _svc.GetDoctorByUserId(id);
+            var doc = _svc.GetDoctorById(id);
             if (doc == null)
             {
                 Alert($"No such doctor {id}", AlertType.warning);
@@ -226,7 +224,7 @@ namespace Consultation.Web.Controllers
         //    }
 
         //    var diagnosis = _svc.GetDiagnoses();
-                
+
         //    if (diagnosis == null)
         //    {
         //        return NotFound();

@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Consultation.Web.Controllers
 {
@@ -33,10 +34,10 @@ namespace Consultation.Web.Controllers
         // GET: Patients/Details
         [Authorize]
         public IActionResult PatientDetails()
-        {           
+        {
             // obtain id from currently logged in user (patient)
             var id = GetSignedInUserId(); // method in base controller
-          
+
             // retrieve the patient with specified id from the service
             var pat = _svc.GetPatientByUserId(id);
             if (pat == null)
@@ -53,7 +54,7 @@ namespace Consultation.Web.Controllers
         {
             // obtain id from currently logged in user (patient)
             var id = GetSignedInUserId(); // method in base controller
-            
+
             // retrieve the patient with specified id from the service
             var pat = _svc.GetPatientByUserId(id);
             if (pat == null)
@@ -75,7 +76,7 @@ namespace Consultation.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PatientEdit(int id, [Bind("Id,Name,Address,Email,Mobile,Age,Password")] Patient pat)
         {
-            
+
             // validate patient
             if (ModelState.IsValid)
             {
@@ -105,7 +106,8 @@ namespace Consultation.Web.Controllers
             // create the AilmentViewModel and populate the PatientId property
             var ailment = new AilmentViewModel
             {
-                PatientId = id
+                PatientId = id,
+                Symptoms = new MultiSelectList(_svc.GetSymptoms(), "Id", "Name")
             };
 
             return View("CreateAilment", ailment);
@@ -114,7 +116,7 @@ namespace Consultation.Web.Controllers
         // POST /patient/createailment
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateAilment([Bind("PatientId, Issue")] AilmentViewModel m)
+        public IActionResult CreateAilment(AilmentViewModel m)
         {
             var pat = _svc.GetPatientById(m.PatientId);
             // check the returned patient is not null and if so return NotFound()
@@ -125,7 +127,10 @@ namespace Consultation.Web.Controllers
             }
 
             // create the ailment view model and populate the PatientId property
-            _svc.AddAilment(m.PatientId, m.Issue);
+            var ailment = _svc.AddAilment(m.PatientId, m.Issue);
+            var ailmentSymptoms = m.SelectedSymptomIds.Select(i => new AilmentSymptom { AilmentId = ailment.Id, SymptomId = i }).ToList();
+            _svc.AddAilmentSymptoms(ailment.Id, ailmentSymptoms);
+
             Alert($"Ailment created successfully", AlertType.success);
 
             return RedirectToAction("PatientDetails", new { Id = m.PatientId });

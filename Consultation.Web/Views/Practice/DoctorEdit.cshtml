@@ -1,4 +1,4 @@
-﻿@model Doctor
+﻿@model DoctorViewModel
 
 <partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/doctor", "Doctors"), ("","Edit") })>
 
@@ -15,9 +15,9 @@
             <input type="hidden" asp-for="Id" class="form-control" />
 
             <div class="form-group">
-                <label asp-for="User.Name" class="control-label"></label>
-                <input asp-for="User.Name" class="form-control" />
-                <span asp-validation-for="User.Name" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -29,9 +29,15 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="User.Email" class="control-label"></label>
-                <input asp-for="User.Email" class="form-control" />
-                <span asp-validation-for="User.Email" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -41,7 +47,7 @@
             </div>
 
             <!-- submit button and cancel link which navigates to Index action -->
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <input type="submit" value="Save" class="btn btn-primary" />
                 <a class="btn btn-secondary" asp-action="DoctorIndex">Cancel</a>
             </div>

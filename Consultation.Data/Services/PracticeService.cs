@@ -6,16 +6,22 @@ using Consultation.Data.Models;
 using Consultation.Data.Security;
 using Consultation.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Consultation.Data.Services
 {
-    public class PracticeService: UserService, IPracticeServices
+    public class PracticeService : IPracticeService
     {
-        private readonly DatabaseContext  ctx;
+        private readonly DatabaseContext ctx;
 
         public PracticeService()
         {
-            ctx = new DatabaseContext(); 
+            ctx = new DatabaseContext();
+        }
+
+        public void Initialise()
+        {
+            ctx.Initialise();
         }
 
         // ------------------ Symptom Related Operations ------------------------
@@ -203,7 +209,7 @@ namespace Consultation.Data.Services
         }
 
         //-------------------Patients Related--------------------------------------
-        
+
         // get all patients
         public IList<Patient> GetPatients()
         {
@@ -215,7 +221,7 @@ namespace Consultation.Data.Services
         {
             return ctx.Patients
                      .Include(pat => pat.Ailments)
-                     .Include(pat =>pat.User)
+                     .Include(pat => pat.User)
                      .FirstOrDefault(pat => pat.Id == patientId);
         }
 
@@ -237,7 +243,7 @@ namespace Consultation.Data.Services
                 Dob = dob,
 
                 // add patient user account
-                User = new User {Name = name, Email = email, Password = Hasher.CalculateHash(password), Role = Role.Patient }
+                User = new User { Name = name, Email = email, Password = Hasher.CalculateHash(password), Role = Role.Patient }
             };
             ctx.Patients.Add(pat);
             ctx.SaveChanges(); // write to database
@@ -269,10 +275,9 @@ namespace Consultation.Data.Services
             patient.Mobile = updated.Mobile;
             patient.Dob = updated.Dob;
 
-            patient.User.Name = updated.User.Name;          
+            patient.User.Name = updated.User.Name;
             patient.User.Email = updated.User.Email;
             patient.User.Password = Hasher.CalculateHash(updated.User.Password);
-
             ctx.SaveChanges(); // write to database
             return patient;
         }
@@ -305,7 +310,7 @@ namespace Consultation.Data.Services
                      .FirstOrDefault(pat => pat.User.Id == userId);
         }
 
-       
+
 
         //-------------------Ailment Related-----------------
 
@@ -320,12 +325,12 @@ namespace Consultation.Data.Services
         public Ailment AddAilment(int patientId, string issue)
         {
             var patient = GetPatientById(patientId);
-            var ailment = new Ailment { PatientId = patientId, Issue = issue };
             if (patient == null)
             {
                 return null;
             }
-            
+            // create ailment and add to patient
+            var ailment = new Ailment { PatientId = patientId, Issue = issue };
             patient.Ailments.Add(ailment);
             ctx.SaveChanges();
             return ailment;
@@ -515,7 +520,7 @@ namespace Consultation.Data.Services
             return ctx.Doctors.Include(doc => doc.User).ToList();
         }
 
-         public Doctor DoctorCreate(string name, Speciality Speciality, string email, string password, string mobile)
+        public Doctor DoctorCreate(string name, Speciality Speciality, string email, string password, string mobile)
         {
             // check if email is already in use by another doctor
             var existing = GetDoctorByEmail(email);
@@ -531,7 +536,7 @@ namespace Consultation.Data.Services
                 Mobile = mobile,
 
                 // add doctor user account
-                User = new User {Name = name, Email = email, Password = Hasher.CalculateHash(password), Role = Role.Doctor }
+                User = new User { Name = name, Email = email, Password = Hasher.CalculateHash(password), Role = Role.Doctor }
             };
             ctx.Doctors.Add(doc);
             ctx.SaveChanges(); // write to database
@@ -542,7 +547,7 @@ namespace Consultation.Data.Services
         public Doctor GetDoctorById(int doctorId)
         {
             return ctx.Doctors
-                     .Include(doc =>doc.User)
+                     .Include(doc => doc.User)
                      .FirstOrDefault(doc => doc.Id == doctorId);
         }
         public bool IsDuplicateDrEmail(string email, int doctorId)
@@ -569,8 +574,9 @@ namespace Consultation.Data.Services
             doctor.Speciality = updated.Speciality;
             doctor.Mobile = updated.Mobile;
 
-            doctor.User.Name = updated.User.Name;          
+            doctor.User.Name = updated.User.Name;
             doctor.User.Email = updated.User.Email;
+            // password update should only be carried out by the signed in user
             doctor.User.Password = Hasher.CalculateHash(updated.User.Password);
 
             ctx.SaveChanges(); // write to database
@@ -623,7 +629,7 @@ namespace Consultation.Data.Services
             return doc; // return newly added patient
         }
         // delete the specified staff and related user
-      
+
 
         //-------------------------Staff-----------------------------
 
@@ -708,7 +714,7 @@ namespace Consultation.Data.Services
             ctx.SaveChanges(); // write to database
             return true;
         }
-                
+
         // Get the staff with the specified user id
         public Staff GetStaffByUserId(int userId)
         {
@@ -744,7 +750,7 @@ namespace Consultation.Data.Services
         // -----------Diagnosis Related----------------------------
         public Diagnosis GetDiagnoses()
         {
-            
+
             return null;
         }
 

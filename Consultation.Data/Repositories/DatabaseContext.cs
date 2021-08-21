@@ -24,11 +24,12 @@ namespace Consultation.Data.Repositories
         public DbSet<Symptom> Symptoms { get; set; }
         public DbSet<Staff> Staffs { get; set; }
 
+
         // Configure the context to use Specified database. We are using 
         // Sqlite database as it does not require any additional installations.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder                  
+            optionsBuilder
                 .UseSqlite("Filename=data.db")
                 //.LogTo(Console.WriteLine, LogLevel.Information) // remove in production
                 //.EnableSensitiveDataLogging()                   // remove in production
