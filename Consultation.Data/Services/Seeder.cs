@@ -23,6 +23,7 @@ namespace Consultation.Data.Services
             var staff2 = _svc.AddStaff("Jene Tate-Prior", "Medical Data Associate", "jane@email.com", "password", "076384930274");
             var staff3 = _svc.AddStaff("Peggy Jo Flanigan", "Admin Assistant", "peggy22@email.com", "password", "+24948375104");
             var staff4 = _svc.AddStaff("Ann-Hill Willows", "Medical Data Associate", "willows@email.com", "password", "0892347813");
+            var staff5 = _svc.AddStaff("Ade Ajayi", "Data Entry Clerk", "Ade@mail.com", "password", "074053759364");
                         
             // add patients
             var pat = _svc.CreatePatient("Joanna Salome", "3454 Highway 22nd Bypass, Antrim", "pat@mail.com", "password", "0383458734650", new DateTime(2010, 1, 1));
