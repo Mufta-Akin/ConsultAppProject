@@ -134,6 +134,7 @@ namespace Consultation.Web.Controllers
             return RedirectToAction("PatientDetails", new { Id = m.PatientId });
         }
 
+
         // GET: Patients/condition details
         [Authorize]
         public IActionResult PatientConditionDetails(ConditionViewModel condition)
@@ -151,6 +152,50 @@ namespace Consultation.Web.Controllers
             var conditionDetails = _svc.GetDiagnoses(condition.ConditionSymptoms);
 
             return View(conditionDetails);
+        }
+
+
+        // GET /patient/createailment
+        public IActionResult AilmentEdit(int id)
+        {
+            var pat = _svc.GetPatientById(id);
+            // check the returned patient is not null and if so alert
+            if (pat == null)
+            {
+                Alert($"No such patient {id}", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+            // create the AilmentViewModel and populate the PatientId property
+            var ailment = new AilmentViewModel
+            {
+                PatientId = id,
+                Symptoms = new MultiSelectList(_svc.GetSymptoms(), "Id", "Name")
+            };
+
+            return View("CreateAilment", ailment);
+        }
+
+        // POST /patient/createailment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AilmentEdit(AilmentViewModel m)
+        {
+            var pat = _svc.GetPatientById(m.PatientId);
+            // check the returned patient is not null and if so return NotFound()
+            if (pat == null)
+            {
+                Alert($"No such patient {m.PatientId}", AlertType.warning);
+                return RedirectToAction(nameof(PatientIndex));
+            }
+
+            // create the ailment view model and populate the PatientId property
+            var ailment = _svc.AddAilment(m.PatientId, m.Issue);
+            var ailmentSymptoms = m.SelectedSymptomIds.Select(i => new AilmentSymptom { AilmentId = ailment.Id, SymptomId = i }).ToList();
+            _svc.AddAilmentSymptoms(ailment.Id, ailmentSymptoms);
+
+            Alert($"Ailment edited successfully", AlertType.success);
+
+            return RedirectToAction("PatientDetails", new { Id = m.PatientId });
         }
 
     }

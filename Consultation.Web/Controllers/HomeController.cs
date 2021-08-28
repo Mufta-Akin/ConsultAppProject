@@ -13,11 +13,11 @@ namespace Consultation.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-       
-        public HomeController(ILogger<HomeController> logger)
+        private IPracticeService _practiceService;
+
+        public HomeController(IPracticeService practiceService)
         {
-            _logger = logger;
+            _practiceService = practiceService;
         }
 
         public IActionResult Index()
@@ -29,7 +29,7 @@ namespace Consultation.Web.Controllers
         {
             var about = new HomeIndexViewModel
             {
-                
+
             };
             return View();
         }
