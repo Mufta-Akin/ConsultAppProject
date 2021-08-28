@@ -13,11 +13,11 @@ namespace Consultation.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IPracticeService _practiceService;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IPracticeService practiceService)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _practiceService = practiceService;
+            _logger = logger;
         }
 
         public IActionResult Index()
