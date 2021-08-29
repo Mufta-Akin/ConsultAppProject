@@ -470,3 +470,5 @@ C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0
 C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0\ref\Consultation.Web.dll
 C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0\Consultation.Web.pdb
 C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0\Consultation.Web.genruntimeconfig.cache
+C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0\Razor\Views\Condition\ConditionIndex.cshtml.g.cs
+C:\Users\mufta\Desktop\WorkFolder\MyworkFolder\Consultation.Web\obj\Debug\net5.0\Razor\Views\Patient\ConditionIndex.cshtml.g.cs
